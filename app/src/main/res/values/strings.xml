@@ -9,10 +9,20 @@
     <string name="cupcake_price">Precio por cupcake $ %s</string>
 
     <!--SelectFalvorScreen-->
-    <string name="extra_instructions">Otras instrucciones</string>
+    <string name="extra_instructions">Otras instrucciones:</string>
     <string name="subtotal">Subtotal: $ %s</string>
     <string name="cancel">Cancelar</string>
     <string name="next">Siguiente</string>
+
+    <!--SelectDateScreen-->
+    <string name="pickup_instructions">Instrucciones de recolección:</string>
+
+    <!--OrderSummaryScreen-->
+    <string name="quantity">Cantidad:</string>
+    <string name="flavor">Sabor:</string>
+    <string name="pickup_date">Fecha de recolección:</string>
+    <string name="share">Enviar a otra app</string>
+    <string name="send">Enviar orden</string>
 
     <!-- DataSource-->
     <string name="vanilla">Vainilla</string>

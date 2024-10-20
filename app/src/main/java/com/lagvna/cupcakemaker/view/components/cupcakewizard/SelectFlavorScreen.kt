@@ -27,6 +27,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.lagvna.cupcakemaker.R
+import com.lagvna.cupcakemaker.enumerators.ViewIDs
 import com.lagvna.cupcakemaker.enumerators.ViewModelIDs
 import com.lagvna.cupcakemaker.staticdata.DataSource
 import com.lagvna.cupcakemaker.view.components.CustomSpacer
@@ -114,14 +115,18 @@ fun SelectFlavorScreen(navController: NavController,
                 modifier = Modifier.weight(1F),
                 onClick = {
                     cupcakeMakerViewModel.reset()
-                    navController.popBackStack()
+                    navController.popBackStack(
+                        ViewIDs.Start.id, false
+                    )
                 }
             ) {
                 Text(stringResource(R.string.cancel))
             }
             Button(
                 modifier = Modifier.weight(1F),
-                onClick = {},
+                onClick = {
+                    navController.navigate(ViewIDs.SelectDate.id)
+                },
                 enabled = cupcakeMakerViewModel.state.flavor.isNotEmpty()
             ) {
                 Text(stringResource(R.string.next))
