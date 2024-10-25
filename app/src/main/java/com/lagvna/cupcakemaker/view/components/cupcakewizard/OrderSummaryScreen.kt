@@ -16,19 +16,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.GraphicsContext
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.lagvna.cupcakemaker.R
+import com.lagvna.cupcakemaker.enumerators.ViewIDs
 import com.lagvna.cupcakemaker.viewmodel.CupcakeMakerViewModel
-import javax.security.auth.Subject
 
 
-private fun ShareOrder(context: Context, title:String, subject: String, summary: String) {
+private fun shareOrder(context: Context, title:String, subject: String, summary: String) {
     val intent = Intent(Intent.ACTION_SEND).apply {
         type = "text/plain"
         putExtra(Intent.EXTRA_SUBJECT, subject)
@@ -52,6 +50,16 @@ fun OrderSummaryScreen(navController: NavController,
     //Text("Order Summary Placeholder")
     val context = LocalContext.current
     //val resources = context.resources
+
+    val summary = cupcakeMakerViewModel.state.quantity.toString() +
+            " " + stringResource(R.string.cupcake_tag) + "\n" +
+            stringResource(R.string.flavor) + " "+ cupcakeMakerViewModel.state.flavor + "\n" +
+            stringResource(R.string.pickup_date) + " " + cupcakeMakerViewModel.state.pickupDate + "\n" +
+            stringResource(R.string.pickup_instructions) + " " + cupcakeMakerViewModel.state.pickupInstructions + "\n" +
+            stringResource(R.string.extra_instructions) + " " + cupcakeMakerViewModel.state.extraInstructions
+
+    val title = stringResource(R.string.new_order)
+
 
     Column (
         modifier = Modifier.fillMaxSize(),
@@ -121,9 +129,10 @@ fun OrderSummaryScreen(navController: NavController,
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
-                        ShareOrder(context, "Orden final",
+                        shareOrder(context, "Orden final",
                             "Nueva Orden",
-                            "Resumen")
+                            summary = summary)
+
 
                     }
                 ) {
@@ -132,7 +141,9 @@ fun OrderSummaryScreen(navController: NavController,
                 }
                 Button(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { },
+                    onClick = {
+                        navController.navigate(ViewIDs.FinishOrder.id)
+                    },
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF138303)
                     )

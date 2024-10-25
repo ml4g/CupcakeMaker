@@ -23,6 +23,11 @@
     <string name="pickup_date">Fecha de recolección:</string>
     <string name="share">Enviar a otra app</string>
     <string name="send">Enviar orden</string>
+    <string name="new_order">Nueva orden</string>
+
+    <!--FinishScreen-->
+    <string name="Thanks">¡Gracias por tu compra!\nVuelva pronto</string>
+    <string name="start_over">Volver a inicio</string>
 
     <!-- DataSource-->
     <string name="vanilla">Vainilla</string>
